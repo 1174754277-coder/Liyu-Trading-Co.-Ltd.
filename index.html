@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Brand - Product Showcase</title>
+<meta name="description" content="Quality products for global buyers. Contact us on WhatsApp for wholesale pricing.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: #1a1a1a;
+    background: #fafafa;
+    line-height: 1.7;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  /* 顶部导航 */
+  header {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .logo { font-weight: 700; font-size: 20px; letter-spacing: 0.5px; }
+  .nav a {
+    text-decoration: none; color: #555; margin-left: 24px; font-size: 14px;
+    transition: color 0.2s;
+  }
+  .nav a:hover { color: #000; }
+
+  /* Hero 区 */
+  .hero {
+    padding: 90px 0 70px;
+    text-align: center;
+    background: #fff;
+  }
+  .hero h1 {
+    font-size: 42px; font-weight: 700; letter-spacing: -0.5px;
+    margin-bottom: 18px; line-height: 1.25;
+  }
+  .hero p {
+    font-size: 17px; color: #666; max-width: 620px; margin: 0 auto 32px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: #111;
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px; font-weight: 600;
+    transition: background 0.2s, transform 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn:hover { background: #333; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: #111; border: 1.5px solid #111;
+  }
+  .btn-outline:hover { background: #111; color: #fff; }
+
+  /* 产品区 */
+  .section-title {
+    text-align: center; font-size: 30px; font-weight: 700;
+    margin-bottom: 12px;
+  }
+  .section-sub {
+    text-align: center; color: #777; font-size: 15px; margin-bottom: 48px;
+  }
+  .products {
+    padding: 80px 0;
+    background: #fafafa;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .card:hover {
+    box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+  }
+  .card-img {
+    width: 100%; aspect-ratio: 4/3;
+    background: #f0f0f0;
+    display: flex; align-items: center; justify-content: center;
+    color: #bbb; font-size: 13px;
+    overflow: hidden;
+  }
+  .card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .card-body { padding: 20px; }
+  .card-body h3 { font-size: 17px; margin-bottom: 8px; }
+  .card-body p { font-size: 14px; color: #777; margin-bottom: 16px; }
+  .card-body .btn {
+    padding: 10px 20px; font-size: 13px; border-radius: 6px;
+    width: 100%; text-align: center;
+  }
+
+  /* 留言板 */
+  .contact {
+    padding: 80px 0;
+    background: #fff;
+  }
+  .form-box {
+    max-width: 520px; margin: 0 auto;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 40px 32px;
+  }
+  .form-box label {
+    display: block; font-size: 13px; font-weight: 600;
+    margin-bottom: 6px; color: #333;
+  }
+  .form-box input,
+  .form-box textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    margin-bottom: 18px;
+    background: #fff;
+    transition: border-color 0.2s;
+  }
+  .form-box input:focus,
+  .form-box textarea:focus {
+    outline: none; border-color: #111;
+  }
+  .form-box textarea { resize: vertical; min-height: 90px; }
+  .form-box .btn { width: 100%; }
+
+  /* 悬浮 WhatsApp 按钮 */
+  .wa-float {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(37,211,102,0.4);
+    z-index: 200;
+    transition: transform 0.2s;
+    text-decoration: none;
+  }
+  .wa-float:hover { transform: scale(1.08); }
+  .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+
+  /* 页脚 */
+  footer {
+    padding: 32px 0; text-align: center;
+    font-size: 13px; color: #999;
+    border-top: 1px solid #eee; background: #fff;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 30px; }
+    .hero { padding: 60px 0 50px; }
+    .nav a { margin-left: 14px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 导航 -->
+<header>
+  <div class="container nav">
+    <div class="logo">YOUR BRAND</div>
+    <nav>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Quality Products,<br>Direct from the Source</h1>
+    <p>We supply reliable products to global buyers. Browse our catalog and reach out on WhatsApp for wholesale pricing and samples.</p>
+    <a href="#contact" class="btn">Get a Quote</a>
+  </div>
+</section>
+
+<!-- 产品区 -->
+<section class="products" id="products">
+  <div class="container">
+    <h2 class="section-title">Our Products</h2>
+    <p class="section-sub">Replace these cards with your own products and images.</p>
+    <div class="grid">
+
+      <!-- 产品卡片 1 -->
+      <div class="card">
+        <div class="card-img">
+          <!-- 把下面 src 换成你的图片地址，例如 img/product1.jpg -->
+          <img src="https://via.placeholder.com/400x300?text=Product+1" alt="Product 1">
+        </div>
+        <div class="card-body">
+          <h3>Product Name 1</h3>
+          <p>Short description of the product, materials, sizes, or key features.</p>
+          <a href="#contact" class="btn">Inquire on WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- 产品卡片 2 -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://via.placeholder.com/400x300?text=Product+2" alt="Product 2">
+        </div>
+        <div class="card-body">
+          <h3>Product Name 2</h3>
+          <p>Short description of the product, materials, sizes, or key features.</p>
+          <a href="#contact" class="btn">Inquire on WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- 产品卡片 3 -->
+      <div class="card">
+        <div class="card-img">
+          <img src="https://via.placeholder.com/400x300?text=Product+3" alt="Product 3">
+        </div>
+        <div class="card-body">
+          <h3>Product Name 3</h3>
+          <p>Short description of the product, materials, sizes, or key features.</p>
+          <a href="#contact" class="btn">Inquire on WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 留言板 -->
+<section class="contact" id="contact">
+  <div class="container">
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-sub">Leave your WhatsApp number and we'll reply within 24 hours.</p>
+
+    <div class="form-box">
+      <!--
+        注意：这是纯前端表单，默认不会真的把留言发到任何地方。
+        你需要接一个表单服务（推荐 Formspree，免费），把 action 改成你的地址。
+        详见下方说明。
+      -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+        <label for="whatsapp">WhatsApp Number</label>
+        <input type="tel" id="whatsapp" name="whatsapp" placeholder="+1 234 567 8900" required>
+
+        <label for="message">What product are you interested in?</label>
+        <textarea id="message" name="message" placeholder="Tell us what you need..."></textarea>
+
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 悬浮 WhatsApp 按钮：把 8613800000000 换成你的 WhatsApp 号码（国际格式，不带+和空格） -->
+<a class="wa-float" href="https://wa.me/8613800000000" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.004 3C8.832 3 3 8.83 3 16.002c0 2.29.6 4.44 1.65 6.31L3 29l6.86-1.61a12.94 12.94 0 0 0 6.14 1.56h.01c7.17 0 13-5.83 13-13.002C29 8.83 23.17 3 16.004 3zm0 23.75h-.01a10.75 10.75 0 0 1-5.47-1.5l-.39-.23-4.07.96.96-3.97-.26-.41a10.72 10.72 0 0 1-1.65-5.75c0-5.94 4.83-10.77 10.78-10.77 2.88 0 5.58 1.12 7.62 3.16a10.7 10.7 0 0 1 3.15 7.62c0 5.94-4.83 10.77-10.76 10.77zm5.9-8.07c-.32-.16-1.92-.95-2.22-1.06-.3-.11-.52-.16-.74.16-.22.32-.85 1.06-1.04 1.28-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.59-1.6-.96-.86-1.6-1.92-1.79-2.24-.19-.32-.02-.5.14-.66.14-.14.32-.38.48-.57.16-.19.22-.32.32-.54.11-.22.05-.4-.03-.57-.08-.16-.74-1.79-1.01-2.45-.27-.64-.54-.55-.74-.56l-.63-.01c-.22 0-.57.08-.87.4-.3.32-1.14 1.11-1.14 2.72s1.17 3.15 1.33 3.37c.16.22 2.3 3.51 5.57 4.92.78.34 1.39.54 1.86.69.78.25 1.49.21 2.05.13.63-.09 1.92-.79 2.19-1.54.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38z"/></svg>
+</a>
+
+<footer>
+  <div class="container">© 2026 YOUR BRAND. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
